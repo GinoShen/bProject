@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="build number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUC-XW-nys">
-                                <rect key="frame" x="261" y="539.5" width="78" height="14.5"/>
+                                <rect key="frame" x="261" y="539" width="78" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -32,19 +32,41 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This version is:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MGh-V3-dea">
-                                <rect key="frame" x="207" y="279" width="114" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This version is:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MGh-V3-dea">
+                                <rect key="frame" x="233" y="286" width="133" height="27.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pe6-js-Ba2">
+                                <rect key="frame" x="260" y="60" width="80" height="80"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZT-r1-hRw">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                        <connections>
+                                            <action selector="pressToLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ztE-Vr-hto"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="CZT-r1-hRw" firstAttribute="leading" secondItem="pe6-js-Ba2" secondAttribute="leading" id="Fd9-QO-adj"/>
+                                    <constraint firstAttribute="trailing" secondItem="CZT-r1-hRw" secondAttribute="trailing" id="HmL-SA-s42"/>
+                                    <constraint firstAttribute="width" constant="80" id="UAn-I1-3PL"/>
+                                    <constraint firstItem="CZT-r1-hRw" firstAttribute="top" secondItem="pe6-js-Ba2" secondAttribute="top" id="a2U-Ug-gpd"/>
+                                    <constraint firstAttribute="bottom" secondItem="CZT-r1-hRw" secondAttribute="bottom" id="i9g-xv-Zt5"/>
+                                    <constraint firstAttribute="height" constant="80" id="mbp-dH-OIT"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FWD-c4-R7K" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2aP-QQ-Tww"/>
                             <constraint firstItem="MGh-V3-dea" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8dK-0Q-VAN"/>
+                            <constraint firstItem="pe6-js-Ba2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Gea-l1-Tdz"/>
                             <constraint firstItem="MGh-V3-dea" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="btu-xx-rOP"/>
                             <constraint firstItem="JUC-XW-nys" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="exT-XT-fig"/>
+                            <constraint firstItem="pe6-js-Ba2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="h8S-5e-que"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FWD-c4-R7K" secondAttribute="bottom" constant="17" id="xSo-LR-WMt"/>
                             <constraint firstItem="FWD-c4-R7K" firstAttribute="top" secondItem="JUC-XW-nys" secondAttribute="bottom" constant="8" id="yOH-lf-pOP"/>
                         </constraints>
@@ -52,6 +74,7 @@
                     <connections>
                         <outlet property="buildNumberLabel" destination="JUC-XW-nys" id="d61-Y6-J8q"/>
                         <outlet property="gitVersionLabel" destination="FWD-c4-R7K" id="dAM-hT-G8N"/>
+                        <outlet property="loginStatusView" destination="pe6-js-Ba2" id="Rhb-Dv-AaE"/>
                         <outlet property="targetLabel" destination="MGh-V3-dea" id="9Xn-XI-b7f"/>
                     </connections>
                 </viewController>
