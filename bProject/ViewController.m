@@ -11,6 +11,7 @@
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *buildNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gitVersionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *targetLabel;
 
 @end
 
@@ -21,6 +22,13 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.buildNumberLabel.text = [NSString stringWithFormat:@"Build Number: %@", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
     self.gitVersionLabel.text = [NSString stringWithFormat:@"Git Version: %@", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CommitVersion"]];
+
+#if defined DEV_VERSION
+    self.targetLabel.text = @"This is dev Version";
+#else
+    self.targetLabel.text = @"This is production Version";
+#endif
+
 }
 
 - (void)didReceiveMemoryWarning {
