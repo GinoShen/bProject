@@ -24,15 +24,15 @@
     return self;
 }
 
-+ (void)login
++ (void)loginCompletion:(void(^)(id data))completion
 {
     UserDataModel *uData = [[UserDataModel alloc] init];
     uData.userId = @"007";
     uData.userName = @"Gino";
-    [UserManager setLoginWithData:uData];
+    completion(uData);
 }
 
-+ (void)logout
++ (void)logoutCompletion:(void(^)(void))completion
 {
     [UserManager removeLoginData];
 }

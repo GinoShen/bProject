@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *buildNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gitVersionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *targetLabel;
+@property (weak, nonatomic) IBOutlet UIView *loginStatusView;
+
 - (UIColor *) setLoginStatusColor;
 
 @end

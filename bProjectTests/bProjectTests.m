@@ -7,6 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "UserDataModel.h"
+#import "UserManager.h"
+#import "ViewController.h"
 
 @interface bProjectTests : XCTestCase
 
@@ -29,11 +32,52 @@
     // Use XCTAssert and related functions to verify your tests produce the correct results.
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+
+- (void)testCommitVersion {
+    // Arrange: check commit versino is set up
+    // Act: get commit version from plist
+    // Assert: it should not be nil;
+    XCTAssertNotNil([[NSBundle mainBundle] objectForInfoDictionaryKey:@"CommitVersion"]);
 }
+
+
+- (void)testUserLoginData{
+    // Arrange: check login user data is not nil
+    // Act: user login
+    // Assert: user data is not nil, userId, username is not nil also;
+
+    [UserDataModel loginCompletion:^(id data){
+        UserDataModel *uData = (UserDataModel *)data;
+        XCTAssertNotNil(uData);
+        XCTAssertNotNil(uData.userId);
+        XCTAssertNotNil(uData.userName);
+        
+    }];
+    
+}
+
+- (void)testVCCommitVesionLabel {
+
+    // Arrange: git version is set to view in viewDidLoad
+    // Act: set up vc
+    // Assert: check gitVersionLabel;
+
+    UIStoryboard *storyboard =
+    [UIStoryboard storyboardWithName:@"Main"
+                              bundle:[NSBundle mainBundle]];
+    ViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"root"];
+    [vc loadView];
+    [vc viewDidLoad];
+    NSString *gitVersion = [NSString stringWithFormat:@"Git Version: %@", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CommitVersion"]];
+    XCTAssertTrue([vc.gitVersionLabel.text isEqualToString:gitVersion], @"");
+
+}
+
+//- (void)testPerformanceExample {
+//    // This is an example of a performance test case.
+//    [self measureBlock:^{
+//        // Put the code you want to measure the time of here.
+//    }];
+//}
 
 @end

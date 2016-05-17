@@ -11,10 +11,6 @@
 #import "UserDataModel.h"
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *buildNumberLabel;
-@property (weak, nonatomic) IBOutlet UILabel *gitVersionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *targetLabel;
-@property (weak, nonatomic) IBOutlet UIView *loginStatusView;
 
 @end
 
@@ -54,9 +50,14 @@
 - (IBAction)pressToLogin:(id)sender {
     
     if ([UserManager isUserLogin]) {
-        [UserDataModel logout];
+        [UserDataModel logoutCompletion:^(void){
+            [UserManager removeLoginData];
+        }];
     }else{
-        [UserDataModel login];
+        [UserDataModel loginCompletion:^(id data){
+            [UserManager setLoginWithData:data];
+        
+        }];
     }
     self.loginStatusView.backgroundColor = [self setLoginStatusColor];
 ;

@@ -33,9 +33,7 @@ static NSString *const  USER_STORE_KEY = @"UserData";
     self = [super init];
     
     if (self) {
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:USER_STORE_KEY]) {
-            self.userData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:USER_STORE_KEY]];
-        }
+        [self getAndDecoderUserDataFromUserDefault];
     }
     return self;
 }
@@ -48,10 +46,7 @@ static NSString *const  USER_STORE_KEY = @"UserData";
 + (void) setLoginWithData:(UserDataModel *)userData
 {
     [[self sharedInstance] setUserData:userData];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:userData];
-    [userDefaults setObject:data forKey:USER_STORE_KEY];
-    [userDefaults synchronize];
+    [[self sharedInstance] setAndEncoderUserDataFromUserDefault];
 }
 
 + (void) removeLoginData
@@ -59,6 +54,20 @@ static NSString *const  USER_STORE_KEY = @"UserData";
     [[self sharedInstance] setUserData:nil];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_STORE_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void) getAndDecoderUserDataFromUserDefault
+{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:USER_STORE_KEY]) {
+        self.userData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:USER_STORE_KEY]];
+    }
+}
+
+- (void) setAndEncoderUserDataFromUserDefault
+{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:USER_STORE_KEY]) {
+        self.userData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:USER_STORE_KEY]];
+    }
 }
 
 

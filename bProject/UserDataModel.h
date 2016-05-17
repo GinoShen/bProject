@@ -12,7 +12,7 @@
 @property (nonatomic, strong)NSString *userId;
 @property (nonatomic, strong)NSString *userName;
 
-+ (void)login;
-+ (void)logout;
++ (void)loginCompletion:(void(^)(id data))completion;
++ (void)logoutCompletion:(void(^)(void))completion;
 
 @end
